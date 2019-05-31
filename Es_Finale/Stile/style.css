@@ -1,0 +1,200 @@
+div.login{
+	position: fixed;
+	border: 1px solid black;
+	border-color: gray;
+	float:left;
+	background-color:#ffff99;
+	padding: 7px;
+	margin:10px;
+}
+
+div.signin{
+	
+	border: 1px solid black;
+	border-color: gray;	
+	background-color:#ffff99;
+	padding: 7px;
+	margin:10px;
+	position: absolute;
+	right: 5px;
+	position: fixed;
+}
+
+
+#passLog{
+	margin: 3px;
+	width:142px;
+}
+
+#userLog{
+	margin: 3px;
+	
+}
+
+#passSign{
+	margin: 3px;
+	width:142px;
+}
+
+#rePassSign{
+	margin: 3px;
+	width:92px;
+}
+
+#userSign{
+	margin: 3px;
+	
+}
+
+#log{
+	width:80px;
+	position: relative;
+	left: 33%;
+}
+
+#sign{
+	width:80px;
+	position: relative;
+	left: 33%;
+}
+
+#newExam{
+	float: left;
+	position: absolute;
+	left: 44%;
+	width: 150;
+	
+}
+
+div.ecdlLabel{
+	float: left;
+	border: 2px solid black;
+	border-color: blue;
+	font-size: 30;
+	background-color:#72bcd4;
+	padding: 15px;
+	border-radius: 75px;
+	position: absolute;
+	left: 45%;
+}
+
+div.contenitore{
+	border: 2px solid black;
+	border-color: gray;
+	float:left;
+	margin: 8px;
+	background-color: silver;
+	
+}
+
+div.t{
+	font-family: Calibri;
+	font-size: 24;
+	padding-left: 100px;
+	margin: 7px;
+	margin-top:16px;
+}
+
+div.exams{
+	float: left;
+	font-family: Calibri;
+	margin-top: 15px;
+}
+div.infoCont{
+	float: left;
+	border: 2px solid black;
+	margin: 7px;
+	padding: 15px;
+	height: 120px;
+	text-align: center;
+	margin-left: 50px;
+	background-color: white;
+
+}
+
+#in{
+	position: relative;
+	top: 40px;
+	
+}
+
+#i2{
+	margin-top: 8px;
+	margin-left: 30;
+}
+
+#totExam{
+	margin-top: 8px;
+	margin-left: 5;
+}
+
+#i3{
+	padding-top: 8px;
+}
+
+div.buySkill{
+	float: left;
+	margin-top: 5px;
+	border: 2px solid black;
+	padding: 2px;
+}
+
+p.p1{
+	word-spacing: 130px;
+	margin-left: 15px;
+}
+
+label.i4{
+	margin-left: 8px;
+}
+
+#i5{
+	margin-left: 130px;
+}
+
+#i6{
+	margin-top: 4px;
+	margin-left: 48px;
+}
+
+div.i7{
+	margin-top: 13px;
+}
+
+#skillPrice{
+	margin-left:23px;
+}
+
+div.setSkill{
+	float:right;
+	border: 2px solid black;
+	margin-top: 5px;
+	padding: 13px;
+	height: 108px;
+}
+
+div.d1{
+	float: left;
+	margin-top: 8px;
+}
+
+#proceed{
+	float: left;
+	margin-top: 40px;
+	margin-left: -60%;
+}
+
+body.b{
+	background-color: #D99294;
+}
+
+
+
+
+
+
+
+
+
+
+
