@@ -3,6 +3,7 @@
    session_start();
    $error = "";
    $error1 = "";
+   
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
       
@@ -13,6 +14,9 @@
       echo $sql;
 	  $result = mysqli_query($db,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+	  $nascondi = "
+	  $link = "<script>document.getElementById('logdiv').style.display='block';</script>";
+	  
 	  
       //$active = $row['active'];
       
@@ -23,7 +27,7 @@
       if($count == 1) {
          //session_register($myusername);
          $_SESSION['login_user'] = $myusername;
-         
+         echo $link;
          //header("location: page2.php");
 		 //echo "<script>openWin()</script>";
 		 //echo "<script type='text/javascript'>openWin();</script>";
@@ -34,6 +38,7 @@
          $error = "Your Login Name or Password is invalid. Register please.";
       }
 	  if($count == 0) {
+		  header("location: index.php");
 		  $error1 = "Compile all box for registration success.";
 		} else {
          
@@ -52,7 +57,7 @@
 		var myWindow;
 	
 			function openWin(){
-				myWindow = window.open("page2.php", "", "width=620, height=560");
+				myWindow = window.open("page2.php", "status=1,width=620,height=560");
 				moveWin();
 			}
 		
@@ -61,12 +66,12 @@
 				myWindow.focus();
 			}
 		
-			function mostra(id) {
-			document.getElementById(id).style.display=”block”;
+			function mostra() {
+			document.getElementById("logdiv").style.display=”block”;
 			}
 
-			function nascondi(id) {
-			document.getElementById(id).style.display=”none”;
+			function nascondi() {
+			document.getElementById("logdiv").style.display=”none”;
 			}
 
 	</script>
@@ -79,7 +84,7 @@
 		LOGIN <br>
 		<label>User </label><input type="text" name ="username"> <br>
 		<label>Password </label><input type="password" name ="password"> <br>
-		<button type="submit" value="Login"> Login </button>
+		<button type="submit"onclick="nascondi()" value="Login"> Login </button>
 	</form>
 	<label style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></label>
 	</div>
