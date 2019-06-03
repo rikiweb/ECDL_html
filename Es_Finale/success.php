@@ -1,7 +1,7 @@
 <?php
    include('session.php');
 ?>
-<html">
+<html>
    
    <head>
       <title>Login avvenuto </title>

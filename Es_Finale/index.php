@@ -6,47 +6,75 @@
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
-      
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
-      
-      $sql = "SELECT user FROM ecdl WHERE user = '$myusername' and password = '$mypassword'";
-      echo $sql;
-	  $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-	  $nascondi = "
-	  $link = "<script>document.getElementById('logdiv').style.display='block';</script>";
-	  
-	  
-      //$active = $row['active'];
-      
-      $count = mysqli_num_rows($result);
-      
-      // If result matched $myusername and $mypassword, table row must be 1 row
-		
-      if($count == 1) {
-         //session_register($myusername);
-         $_SESSION['login_user'] = $myusername;
-         echo $link;
-         //header("location: page2.php");
-		 //echo "<script>openWin()</script>";
-		 //echo "<script type='text/javascript'>openWin();</script>";
-		 /* esempio */
-		//echo '<a href="#" onclick="window.open(\'page2.php\')">Dettagli</a>';
-		//echo "<script language=javascript'>document.getElementById('logdiv').style.display=”block”;</script>";
-		} else {
-         $error = "Your Login Name or Password is invalid. Register please.";
-      }
-	  if($count == 0) {
-		  header("location: index.php");
-		  $error1 = "Compile all box for registration success.";
-		} else {
-         
-      }
+      if(empty($_POST['username1']) && !empty($_POST['username'])){
+		  $myusername = mysqli_real_escape_string($db,$_POST['username']);
+		  $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+		  
+		  $sql = "SELECT user FROM ecdl WHERE user = '$myusername' and password = '$mypassword'";
+		  echo $sql;
+		  $result = mysqli_query($db,$sql);
+		  $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+		  $nascondi = "";
+		  $link = "<script>document.getElementById('logdiv').style.display='none'</script>";
+		  
+		  
+		  //$active = $row['active'];
+		  
+		  $count = mysqli_num_rows($result);
+		  
+		  // If result matched $myusername and $mypassword, table row must be 1 row
+			
+		  if($count == 1) {
+			 //session_register($myusername);
+			 $_SESSION['login_user'] = $myusername;
+			 echo $link;
+			 //header("location: page2.php");
+			 //echo "<script>openWin()</script>";
+			 //echo "<script type='text/javascript'>openWin();</script>";
+			 /* esempio */
+			//echo '<a href="#" onclick="window.open(\'page2.php\')">Dettagli</a>';
+			//echo "<script language=javascript'>document.getElementById('logdiv').style.display=”block”;</script>";
+			} else {
+			 $error = "Your Login Name or Password is invalid. Register please.";
+		  }
+	  }
+	  if(!empty($_POST['username1']) && empty($_POST['username'])){
+		  $regusername = mysqli_real_escape_string($db,$_POST['username1']);
+		  $regpassword = mysqli_real_escape_string($db,$_POST['password1']);
+		  $regcheck = mysqli_real_escape_string($db,$_POST['rePassword1']);
+		  
+		  $sql = "INSERT INTO ecdl(user, password, course) VALUES ('$regusername','$regpassword','1-2-3')";
+		  echo $sql;
+		  $result = mysqli_query($db,$sql);
+		  $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+		  $nascondi = "";
+		  $link = "<script>document.getElementById('signdiv').style.display='none'</script>";
+		  
+		  
+		  //$active = $row['active'];
+		  
+		  $count = mysqli_num_rows($result);
+		  
+		  // If result matched $myusername and $mypassword, table row must be 1 row
+			
+		  if($count >= 1) {
+			 //session_register($myusername);
+			 //$_SESSION['login_user'] = $myusername;
+			 echo $link;
+			 $error1 = "Registrato correttamente, ora puoi loggarti.";
+			 //header("location: page2.php");
+			 //echo "<script>openWin()</script>";
+			 //echo "<script type='text/javascript'>openWin();</script>";
+			 /* esempio */
+			//echo '<a href="#" onclick="window.open(\'page2.php\')">Dettagli</a>';
+			//echo "<script language=javascript'>document.getElementById('logdiv').style.display=”block”;</script>";
+		  } else {
+			 $error1 = "Complete all fields.";
+		  }
+	  }
    }
 ?>
 
-<!DOCTYPE html>
 <html>
 <head>
 
@@ -57,7 +85,7 @@
 		var myWindow;
 	
 			function openWin(){
-				myWindow = window.open("page2.php", "status=1,width=620,height=560");
+				myWindow = window.open("page2.php", "width=620,height=560");
 				moveWin();
 			}
 		
@@ -81,10 +109,11 @@
 <body>
 	<div class="login" id="logdiv">
 	<form action = "" method = "post">
+		<input type="hidden" name="check" value="0" />
 		LOGIN <br>
 		<label>User </label><input type="text" name ="username"> <br>
 		<label>Password </label><input type="password" name ="password"> <br>
-		<button type="submit"onclick="nascondi()" value="Login"> Login </button>
+		<button type="submit" onclick="nascondi()" value="Login"> Login </button>
 	</form>
 	<label style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></label>
 	</div>
@@ -95,11 +124,12 @@
 	
 	<div class="signin" id="signdiv">
 	<form action = "" method = "post">
+		<input type="hidden" name="check" value="1" />
 		SIGNIN <br>
 		User <input type="text" id ="username1" > <br>
 		Password <input type="password" id ="password1"> <br>
 		Repeat-Password <input type="password" id ="rePassword1"> <br>
-		<button id="sign" onclick="signin()"> Signin </button>
+		<button type="submit" value="Signin"> Signin </button>
 	</form>
 	<label style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error1; ?></label>
 	</div>	
