@@ -1,5 +1,12 @@
 <?php
    include('session.php');
+   
+   
+   if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['exit'])) {
+   if(session_destroy()) {
+	  echo "<script>window.close();</script>";
+   }
+   }
 ?>
 
 <html>
@@ -20,7 +27,7 @@
 
 <body class="b">
 	<h1>Benvenuto <?php echo $login_session; ?></h1>
-	<label>Utente riconosciuto con successo.</label><label><a href = "logout.php">Sign Out</a></label>
+	<label>Utente riconosciuto con successo.&emsp;</label><form action="" method="post"><button type="submit" name="exit">Sign Out</button></form>
 	<div class="t">Voglio iscrivermi ai seguenti esami </div>
 	<div class="exams">
 		<input type="checkbox" name="e1" value="e1"> Base<br>
