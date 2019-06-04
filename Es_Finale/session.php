@@ -11,7 +11,9 @@
    $login_session = $row['user'];
    
    if(!isset($_SESSION['login_user'])){
-      header("location:login.php");
+      //header("location:login.php");
+	  echo "<script language='javascript'>alert('Non ti sei ancora loggato, esegui il login e riprova!')</script>";
+	  echo "<script language='javascript'>window.close()</script>";
       die();
    }
 ?>
